@@ -1,0 +1,409 @@
+@prefix hda: <http://data.culture.fr/ontologies/hda/0.1#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix coll: <http://purl.org/co/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix igeo: <http://rdf.insee.fr/def/geo#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+hda:BaseDomaine
+  a owl:Class ;
+  rdfs:label "Base Domaine"@fr ;
+  rdfs:subClassOf coll:ListItem ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:Domaine
+  a owl:Class ;
+  rdfs:label "Domaine"@fr ;
+  rdfs:subClassOf hda:BaseDomaine ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:SousDomaine
+  a owl:Class ;
+  rdfs:label "Sous Domaine"@fr ;
+  rdfs:subClassOf hda:BaseDomaine ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:Institution
+  a owl:Class ;
+  rdfs:label "Institution"@fr ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:Notice
+  a owl:Class ;
+  rdfs:label "Notice"@fr ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:Periode
+  a owl:Class ;
+  rdfs:label "Période"@fr ;
+  rdfs:subClassOf coll:ListItem ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:Site
+  a owl:Class ;
+  rdfs:label "Site"@fr ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:Theme
+  a owl:Class ;
+  rdfs:label "Thème"@fr ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:Ville
+  a owl:Class ;
+  rdfs:label "Ville"@fr ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:DocumentTag
+  a owl:Class ;
+  rdfs:label "Notice Tag"@fr ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:Tag
+  a owl:Class ;
+  rdfs:label "Tag"@fr ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:Category
+  a owl:Class ;
+  rdfs:label "Catégorie"@fr ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:niveau
+  a owl:DatatypeProperty ;
+  rdfs:label "niveau"@fr ;
+  rdfs:range [
+    a rdfs:Datatype ;
+    rdf:oneOf (
+     1
+     2
+     3
+   )
+  ] ;
+  rdfs:domain hda:Periode, hda:Theme ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:url
+  a owl:DatatypeProperty ;
+  rdfs:label "url notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range rdfs:Resource ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:credits
+  a owl:DatatypeProperty ;
+  rdfs:label "crédits notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range rdfs:Literal ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:legendes
+  a owl:DatatypeProperty ;
+  rdfs:label "légendes notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range rdfs:Literal ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:import
+  a owl:DatatypeProperty ;
+  rdfs:label "Valeur d'import de la période"@fr ;
+  rdfs:domain hda:Periode ;
+  rdfs:range rdfs:Literal ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:departement
+  a owl:DatatypeProperty ;
+  rdfs:label "nom département ville"@fr ;
+  rdfs:domain hda:Ville ;
+  rdfs:range [
+    a owl:Restriction ;
+    owl:hasValue igeo:Departement ;
+    owl:onProperty igeo:nom
+  ] ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:region
+  a owl:DatatypeProperty ;
+  rdfs:label "nom région ville"@fr ;
+  rdfs:domain hda:Ville ;
+  rdfs:range [
+    a owl:Restriction ;
+    owl:hasValue igeo:Region ;
+    owl:onProperty igeo:nom
+  ] ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:numeroDepartement
+  a owl:DatatypeProperty ;
+  rdfs:label "code département ville"@fr ;
+  rdfs:domain hda:Ville ;
+  owl:equivalentProperty igeo:codeDepartement ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:numeroRegion
+  a owl:DatatypeProperty ;
+  rdfs:label "code région ville"@fr ;
+  rdfs:domain hda:Ville ;
+  owl:equivalentProperty igeo:codeRegion ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:titreHistoireArts
+  a owl:DatatypeProperty ;
+  rdfs:label "titre site histoire des art"@fr ;
+  rdfs:domain hda:Site ;
+  owl:subPropertyOf rdfs:label ;
+  rdfs:range rdfs:Literal ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:titreService
+  a owl:DatatypeProperty ;
+  rdfs:label "titre service"@fr ;
+  rdfs:domain hda:Site ;
+  owl:subPropertyOf rdfs:label ;
+  rdfs:range rdfs:Literal ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:urlPageHistoireArts
+  a owl:DatatypeProperty ;
+  rdfs:label "url page histoire des arts"@fr ;
+  rdfs:domain hda:Site ;
+  rdfs:range rdfs:Resource ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:urlPageService
+  a owl:DatatypeProperty ;
+  rdfs:label "url page service"@fr ;
+  rdfs:domain hda:Site ;
+  owl:equivalentProperty foaf:homePage ;
+  rdfs:range rdfs:Resource ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:rue
+  a owl:DatatypeProperty ;
+  rdfs:label "rue institution"@fr ;
+  rdfs:domain hda:Institution ;
+  rdfs:range rdfs:Literal ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:originalOrder
+  a owl:DatatypeProperty ;
+  rdfs:label "ordre d'import tag"@fr ;
+  rdfs:domain hda:DocumentTag ;
+  owl:subPropertyOf hda:order ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:indexNote
+  a owl:DatatypeProperty ;
+  rdfs:label "score tag"@fr ;
+  dc:description "score du tag par rapport au titre et à la description"@fr ;
+  rdfs:domain hda:DocumentTag ;
+  rdfs:range rdfs:Literal ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:normalizedLabel
+  a owl:DatatypeProperty ;
+  rdfs:label "tag label normalisé"@fr ;
+  rdfs:domain hda:Tag ;
+  owl:subPropertyOf rdfs:label ;
+  rdfs:range rdfs:Literal ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:originalLabel
+  a owl:DatatypeProperty ;
+  rdfs:label "tag label original"@fr ;
+  rdfs:domain hda:Tag ;
+  owl:subPropertyOf rdfs:label ;
+  rdfs:range rdfs:Literal ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:alternativeLabel
+  a owl:DatatypeProperty ;
+  rdfs:label "tag alternatif wikipedia"@fr ;
+  rdfs:domain hda:Tag ;
+  owl:subPropertyOf rdfs:label ;
+  rdfs:range rdfs:Literal ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:alias
+  a owl:DatatypeProperty ;
+  rdfs:label "tag alias"@fr ;
+  rdfs:domain hda:Tag ;
+  owl:subPropertyOf rdfs:label ;
+  rdfs:range rdfs:Literal ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:wikipediaURL
+  a owl:DatatypeProperty ;
+  rdfs:label "Wikipedia url"@fr ;
+  rdfs:domain hda:Tag ;
+  rdfs:range rdfs:Resource ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:urlStatus
+  a owl:DatatypeProperty ;
+  rdfs:label "Wikipedia url status"@fr ;
+  rdfs:domain hda:Tag ;
+  rdfs:range [
+    a rdfs:Datatype ;
+    rdf:oneOf (
+     0
+     1
+     2
+     3
+   )
+  ] ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:dbpediaURI
+  a owl:DatatypeProperty ;
+  rdfs:label "dbpedia uri"@fr ;
+  rdfs:domain hda:Tag ;
+  rdfs:range rdfs:Resource ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:popularity
+  a owl:DatatypeProperty ;
+  rdfs:label "popularité tag sur hda"@fr ;
+  rdfs:domain hda:Tag ;
+  rdfs:range xsd:double ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:periodeCollege
+  a owl:ObjectProperty ;
+  rdfs:label "période collège notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range hda:Periode, [
+    a owl:subClassOf ;
+    owl:Restriction [
+      owl:hasValue 2 ;
+      owl:onProperty hda:niveau
+    ]
+  ] ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:periodeLycee
+  a owl:ObjectProperty ;
+  rdfs:label "période lycée notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range hda:Periode, [
+    a owl:subClassOf ;
+    owl:Restriction [
+      owl:hasValue 3 ;
+      owl:onProperty hda:niveau
+    ]
+  ] ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:periodePrimaire
+  a owl:ObjectProperty ;
+  rdfs:label "période primaire notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range hda:Periode, [
+    a owl:subClassOf ;
+    owl:Restriction [
+      owl:hasValue 1 ;
+      owl:onProperty hda:niveau
+    ]
+  ] ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:domaine
+  a owl:ObjectProperty ;
+  rdfs:label "domaine notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range hda:Domaine ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:sousDomainePrimaire
+  a owl:ObjectProperty ;
+  rdfs:label "sous-domaine primaire notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range hda:SousDomaine ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:themeCollege
+  a owl:ObjectProperty ;
+  rdfs:label "thème collège notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range hda:Theme, [
+    a owl:subClassOf ;
+    owl:Restriction [
+      owl:hasValue 2 ;
+      owl:onProperty hda:niveau
+    ]
+  ] ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:themeLycee
+  a owl:ObjectProperty ;
+  rdfs:label "thème lycée notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range hda:Theme, [
+    a owl:subClassOf ;
+    owl:Restriction [
+      owl:hasValue 3 ;
+      owl:onProperty hda:niveau
+    ]
+  ] ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:ville
+  a owl:ObjectProperty ;
+  rdfs:label "ville notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range hda:Ville ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:site
+  a owl:ObjectProperty ;
+  rdfs:label "site notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range hda:Site ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:institution
+  a owl:ObjectProperty ;
+  rdfs:label "institution notice"@fr ;
+  rdfs:domain hda:Notice ;
+  rdfs:range hda:Institution ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:tag
+  a owl:ObjectProperty ;
+  rdfs:label "lien notice/tag"@fr ;
+  rdfs:domain hda:DocumentTag ;
+  rdfs:range hda:Tag ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+hda:category
+  a owl:ObjectProperty ;
+  rdfs:label "catégorie tag"@fr ;
+  rdfs:domain hda:Tag ;
+  rdfs:range hda:Category ;
+  rdfs:isDefinedBy <http://data.culture.fr/ontologies/hda/0.1> .
+
+<http://data.culture.fr/ontologies/hda/0.1>
+  a owl:Ontology, voaf:Vocabulary ;
+  cc:license <http://creativecommons.org/licenses/by/3.0/>, <http://dbpedia.org/resource/MCC> ;
+  foaf:creator [
+    a foaf:Person ;
+    foaf:name "Yves-Marie Haussonne"
+  ] ;
+  dc:description "Ontologie des objets du portail Histoire des Arts"@fr ;
+  dc:issued "2020-04-11T00:00:00+02:00"^^xsd:dateTime ;
+  dc:modified "2014-09-19T00:00:00+02:00"^^xsd:dateTime ;
+  dc:title "Ontologie du portail Histoire des Arts"@fr ;
+  vann:preferredNamespacePrefix "fr" ;
+  vann:preferredNamespaceUri hda: ;
+  dc:rights "Copyright © 2020 Ministère de la Culture et de la Communication"@fr ;
+  cc:licence <http://www.data.gouv.fr/Licence-Ouverte-Open-Licence> ;
+  owl:versionInfo "Version 0.1 2014/09/19" ;
+  voaf:classNumber 12 ;
+  voaf:propertyNumber 36 .
+
